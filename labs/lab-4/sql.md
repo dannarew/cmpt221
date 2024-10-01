@@ -53,7 +53,7 @@ db_owner = postgres
 db_pass = <your password>
 ```
 
-Almost all of the code in this lab is the same as the code in lab 3. The only difference is in database.py (formerly db.py): 
+Almost all of the code in this lab is the same as the code in lab 3. The only difference is in server.py (formerly db.py): 
 
 ```bash
 # sql query
@@ -64,7 +64,7 @@ db.session.execute(text(query))
 db.session.commit()
 ```
 
-Lab 4 begins on `line 52` in `database.py`. Create four queries based on the comments provided. Optionally, It may help to try out your queries in pgAdmin4 before adding them to your code.
+Lab 4 begins on `line 52` in `server.py`. Create four queries based on the comments provided. Optionally, It may help to try out your queries in pgAdmin4 before adding them to your code.
 
 **SQL Resource:** https://www.w3schools.com/sql/default.asp
 
