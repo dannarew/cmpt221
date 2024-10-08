@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Bad GUI - Randomized Page 1</title>
+    <style>
+        
+        h1 {
+            font-size: 62px;  
+            color: #ff6347;   
+            transform: rotate(-15deg); 
+        }
+        p {
+            font-size: 9px;   
+            line-height: 2.5; 
+            letter-spacing: 3px; 
+        }
+        #random-div {
+            background-color: #ffeb3b;  
+            height: 300px;
+            width: 80%;
+            margin: 50px auto;
+            border: 10px dashed blue;
+            display: flex;
+            justify-content: space-between;
+        }
+        #random-div img {
+            height: 300px;  
+        }
+    </style>
+</head>
+<body>
+    <h1>How's it going?</h1>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/page1">Page 1</a>
+        <a href="/page2">Page 2</a>
+    </nav>
+    
+    <div id="random-div">
+        <p>
+           Goofy page 1
+        </p>
+        <img src="{{ url_for('static', filename='images/dogsmile.gif') }}" alt="An even worse photo">
+    </div>
+
+    <footer>
+        <p style="text-align:center; font-size:18px; color: lime;">
+            © 2024 Dannarew
+        </p>
+    </footer>
+</body>
+</html>
