@@ -1,11 +1,57 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Lab 5</title>
-        <link rel="stylesheet" href="/static/style.css">
-    </head>
-    <body>
-        <h1>Welcome to Lab 5!</h1>
-        <p>Change me and use me as your first webpage!</p>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Bad GUI - Home</title>
+    <style>
+        h1 {
+            font-size: 70px; 
+            color: #32cd32; 
+            transform: rotate(20deg); 
+        }
+        nav {
+            margin-bottom: 50px;
+        }
+        nav a {
+            font-size: 40px; 
+            background-color: #ff69b4; 
+            padding: 20px; 
+            display: block; 
+            text-decoration: none;
+            margin: 15px 0; 
+        }
+        body {
+            background-color: #ffa500; 
+            text-align: left; 
+            padding-left: 40px; 
+        }
+        p {
+            font-size: 12px; 
+            margin: 50px 100px; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Worst Home Page!</h1>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/page1">Page 1</a>
+        <a href="/page2">Page 2</a>
+    </nav>
+
+    <p>
+       I have no clue whats going on 
+    </p>
+
+    <img src="{{ url_for('static', filename='images/huhcat.jpg') }}" alt="A bad photo" width="500">
+
+    <footer>
+        <p style="font-size: 24px; text-align: right; color: navy;">
+            © 2024 Dannarew 
+        </p>
+    </footer>
+</body>
 </html>
