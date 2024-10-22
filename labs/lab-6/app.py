@@ -12,12 +12,42 @@ from db.schema.user import User
 def index():
     return render_template('index.html')
 
-@app.route('/signup')
+@app.route('/signup', methods=['GET','POST'])
 def signup():
+    if request.method == 'POST':
+    # raw sql query
+     #  query = f"""INSERT INTO "Users" ("FirstName", "LastName", "Email", "PhoneNumber", "Password")
+     #               VALUES ('{request.form ["FirstName"] }',
+     #                       '{request.form ["LastName"]}'
+     #                       '{request.form ["Email"]}',
+     #                       '{request.form ["Phone"]}'
+     #                       '{request.form ["Password"]}'
+     #                       );""" 
+        query = insert(User).values(request.form)
+        with app.app_context():
+    # execute raw query
+            db.session.execute(query)
+    # commit changes to the db
+            db.session.commit()
+
+            return redirect(url_for('index'))
+
     return render_template('signup.html')
 
-@app.route('/login')
+@app.route('/login', methods=['GET','POST'])
 def login():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['Password']
+
+        user = session.query(User).filter_by(Email=email).first()
+
+        if user and user.Password == password:
+            return redirect(url_for('dashboard'))
+        else:
+            flash("Incorrect email or password. Please try again.")
+            return redirect(url_for('login'))
+
     return render_template('login.html')
 
 @app.route('/users')
