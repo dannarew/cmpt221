@@ -8,12 +8,17 @@
         <h1>Log In</h1>
         <div>
         <!-- Create a log in form here -->
-
+        <form action="/login" method="POST">
+            <label for="email">Email:</label><br>
+            <input type="text" id="user" name="user"><br>
+            <label for="pass">Password:</label><br>
+            <input type="text" id="pass" name="pass">
+          </form>
         </div>
         
         <br>
         <a href="/">
-            <button type="button" id="home">Home</button>
+            <button type="button" id="home">Login</button>
         </a>
     </body>
 </html>
