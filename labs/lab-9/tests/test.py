@@ -24,3 +24,46 @@ def test_insert_user(db_session, sample_signup_input):
 
     assert selected_user is not None
     assert selected_user.LastName == "Phippen"
+
+# 3. Test invalid user signup (missing required fields)
+def test_invalid_signup(db_session):
+    """Test signup with missing required fields."""
+    incomplete_user = {'FirstName': '', 'LastName': 'Phippen', 'Email': '', 'Password': 'mypassword'}
+    with pytest.raises(Exception):
+        db_session.execute(insert(User).values(incomplete_user))
+
+# 4. Test valid login
+def test_valid_login(db_session, sample_signup_input, sample_login_input):
+    """Ensure a user can log in with valid credentials."""
+    
+    insert_stmt = insert(User).values(sample_signup_input)
+    db_session.execute(insert_stmt)
+    db_session.commit()
+
+   
+    query = text(f"SELECT Password FROM users WHERE Email = '{sample_login_input['Email']}'")
+    result = db_session.execute(query).fetchone()
+
+    
+    assert result is not None
+    assert result[0] == sample_login_input['Password']
+
+# 5. Test login with incorrect password (expected to fail)
+def test_invalid_login(db_session, sample_signup_input, sample_login_input):
+    """Ensure login fails with incorrect credentials."""
+    
+    insert_stmt = insert(User).values(sample_signup_input)
+    db_session.execute(insert_stmt)
+    db_session.commit()
+
+    
+    invalid_login_input = sample_login_input.copy()
+    invalid_login_input['Password'] = 'wrongpassword'
+
+    
+    query = text(f"SELECT Password FROM users WHERE Email = '{invalid_login_input['Email']}'")
+    result = db_session.execute(query).fetchone()
+
+    
+    assert result is not None
+    assert result[0] != invalid_login_input['Password']
